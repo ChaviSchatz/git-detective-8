@@ -1,0 +1,58 @@
+// My Tasks - a very simple task list
+
+// The list of tasks. Each task has a text and a "done" flag.
+const tasks = [
+  { text: "Buy milk", done: false },
+  { text: "Finish homework", done: true },
+  { text: "Call grandma", done: false },
+  { text: "Water the plants", done: true },
+  { text: "Read a book", done: false }
+];
+
+// Elements from the page
+const taskList = document.getElementById("task-list");
+const taskInput = document.getElementById("task-input");
+const addButton = document.getElementById("add-button");
+
+// Draw all the tasks on the page
+function renderTasks() {
+  taskList.innerHTML = "";
+
+  for (const task of tasks) {
+    const item = document.createElement("li");
+    if (task.done) {
+      item.className = "done";
+    }
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.done;
+    checkbox.addEventListener("change", function () {
+      task.done = checkbox.checked;
+      renderTasks();
+    });
+
+    const text = document.createElement("span");
+    text.textContent = task.text;
+
+    item.appendChild(checkbox);
+    item.appendChild(text);
+    taskList.appendChild(item);
+  }
+}
+
+// Add a new task from the text box
+function addTask() {
+  const text = taskInput.value.trim();
+  if (text === "") {
+    return;
+  }
+
+  tasks.push({ text: text, done: false });
+  taskInput.value = "";
+  renderTasks();
+}
+
+addButton.addEventListener("click", addTask);
+
+renderTasks();
