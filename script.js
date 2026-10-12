@@ -21,6 +21,14 @@ const addButton = document.getElementById("add-button");
 function renderTasks() {
   taskList.innerHTML = "";
 
+  if (tasks.length === 0) {
+    const message = document.createElement("li");
+    message.className = "empty-message";
+    message.textContent = "No tasks to show.";
+    taskList.appendChild(message);
+    return;
+  }
+
   for (const task of tasks) {
     const item = document.createElement("li");
     if (task.done) {

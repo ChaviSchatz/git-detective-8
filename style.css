@@ -54,6 +54,12 @@ ul {
   margin: 0;
 }
 
+.empty-message {
+  justify-content: center;
+  color: #888888;
+  font-style: italic;
+}
+
 li {
   display: flex;
   align-items: center;
