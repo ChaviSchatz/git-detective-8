@@ -64,5 +64,6 @@ function addTask() {
 }
 
 addButton.addEventListener("click", addTask);
-renderTasks();
 
+// Show the tasks as soon as the script loads (after everything is defined)
+renderTasks();
